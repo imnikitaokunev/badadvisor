@@ -6,13 +6,13 @@ param environment string
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   name: 'saartadvisor${environment}'
-  location: 'eastus'
+  location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'
   }
   kind: 'StorageV2'
   properties: {
-    accessTier: 'Cool'
+    accessTier: 'Hot'
   }
 }
 
