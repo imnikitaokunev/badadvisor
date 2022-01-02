@@ -3,9 +3,10 @@
   'prod'
 ])
 param environment string
+param resourcePostfix string
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: 'saartadvisor${environment}'
+  name: 'sabadadvisor${environment}${resourcePostfix}'
   location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'

@@ -3,11 +3,10 @@
   'prod'
 ])
 param environment string
-
-var planName = 'plan-badadvisor-${environment}'
+param resourcePostfix string
 
 resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
-  name: planName
+  name: 'plan-badadvisor-${environment}-${resourcePostfix}'
   location: resourceGroup().location
   sku: {
     tier: 'Free'
@@ -21,7 +20,7 @@ resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
 }
 
 resource appService 'Microsoft.Web/sites@2021-02-01' = {
-  name: 'appservice-badadvisor-${environment}'
+  name: 'appservice-badadvisor-${environment}-${resourcePostfix}'
   location: resourceGroup().location
   properties: {
     serverFarmId: plan.id
