@@ -24,6 +24,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   location: resourceGroup().location
   properties: {
     serverFarmId: plan.id
-  }
+    reserved: true
+  }  
 }
 
