@@ -19,3 +19,12 @@ resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
     reserved: true
   }
 }
+
+resource appService 'Microsoft.Web/sites@2021-02-01' = {
+  name: 'appservice-badadvisor-${environment}'
+  location: resourceGroup().location
+  properties: {
+    serverFarmId: plan.id
+  }
+}
+
