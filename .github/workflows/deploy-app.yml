@@ -18,18 +18,10 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Set up .NET Core
+      - name: Set up .NET Version
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-      
-      - name: Set up dependency caching for faster builds
-        uses: actions/cache@v2
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
 
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_PATH}} --configuration Release
