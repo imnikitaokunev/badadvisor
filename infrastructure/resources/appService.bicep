@@ -9,8 +9,8 @@ resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: 'plan-badadvisor-${environment}-${resourcePostfix}'
   location: resourceGroup().location
   sku: {
-    tier: 'Free'
-    name: 'F1'
+    tier: 'Basic'
+    name: 'B1'
   }
   kind: 'linux'
   properties: {
@@ -24,7 +24,12 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   location: resourceGroup().location
   properties: {
     serverFarmId: plan.id
-    reserved: true
+    enabled: true
+    siteConfig: {
+      netFrameworkVersion: 'v5.0'
+    }
+  }
+  identity: {
+    type: 'SystemAssigned'
   }  
 }
-
