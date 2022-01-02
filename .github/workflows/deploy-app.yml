@@ -7,9 +7,6 @@ env:
   PROJECT_PATH: 'src\\BadAdvisor\\BadAdvisor.Mvc\\BadAdvisor.Mvc.csproj'
   
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
