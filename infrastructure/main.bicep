@@ -40,7 +40,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      userId: userId
+      '/subscriptions/3e32d837-5b9a-44ac-8771-03d9feafce7a/resourceGroups/${resourceGroup().name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${userId.name}': {}
     }
   }  
 }
