@@ -40,7 +40,8 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      id: userId
+      userId: {
+      }
     }
   }  
 }
