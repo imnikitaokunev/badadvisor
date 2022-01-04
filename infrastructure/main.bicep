@@ -13,12 +13,34 @@ module storageAccount 'resources/storageAccount.bicep' = {
     resourcePostfix: resourcePostfix
   }
 }
-
-module appService 'resources/appService.bicep' = {
-  name: 'appService-deployment'
-  params: {
-    environment: environment
-    resourcePostfix: resourcePostfix
-    identity: userId
+resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
+  name: 'plan-badadvisor-${environment}-${resourcePostfix}'
+  location: resourceGroup().location
+  sku: {
+    tier: 'Basic'
+    name: 'B1'
   }
+  kind: 'linux'
+  properties: {
+    maximumElasticWorkerCount: 1
+    reserved: true
+  }
+}
+
+resource appService 'Microsoft.Web/sites@2021-02-01' = {
+  name: 'appservice-badadvisor-${environment}-${resourcePostfix}'
+  location: resourceGroup().location
+  properties: {
+    serverFarmId: plan.id
+    enabled: true
+    siteConfig: {
+      netFrameworkVersion: 'v5.0'
+    }
+  }
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      id: userId
+    }
+  }  
 }
