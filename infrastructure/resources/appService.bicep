@@ -4,6 +4,7 @@
 ])
 param environment string
 param resourcePostfix string
+param identity object
 
 resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: 'plan-badadvisor-${environment}-${resourcePostfix}'
@@ -31,5 +32,8 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   }
   identity: {
     type: 'SystemAssigned'
+    userAssignedIdentities: {
+      id: identity
+    }
   }  
 }
