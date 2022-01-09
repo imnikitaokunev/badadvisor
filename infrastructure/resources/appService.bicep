@@ -26,7 +26,9 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     serverFarmId: plan.id
     enabled: true
     siteConfig: {
-      netFrameworkVersion: 'v5.0'
+      linuxFxVersion: 'DOTNETCORE|5.0'
+      alwaysOn: true
+      appCommandLine: 'dotnet BadAdvisor.Mvc.exe'
     }
   }
   identity: {
