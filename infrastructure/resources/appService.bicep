@@ -27,7 +27,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     enabled: true
     siteConfig: {
       linuxFxVersion: 'DOTNETCORE|5.0'
-      alwaysOn: true
+      //alwaysOn: true
     }
   }
   identity: {
