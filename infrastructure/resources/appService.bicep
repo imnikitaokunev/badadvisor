@@ -9,8 +9,8 @@ resource plan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: 'plan-badadvisor-${environment}-${resourcePostfix}'
   location: resourceGroup().location
   sku: {
-    tier: 'Basic'
-    name: 'B1'
+    tier: 'Free'
+    name: 'F1'
   }
   kind: 'linux'
   properties: {
@@ -28,7 +28,6 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     siteConfig: {
       linuxFxVersion: 'DOTNETCORE|5.0'
       alwaysOn: true
-      appCommandLine: 'dotnet BadAdvisor.Mvc.exe'
     }
   }
   identity: {
