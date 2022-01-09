@@ -22,6 +22,15 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2021-03-01' = {
         name: 'subnet-appservice-badadvisor-${environment}-${resourcePostfix}'
         properties: {
           addressPrefix: appServiceSubnetCIDR
+          delegations: [
+            {
+              name: 'Microsoft.Web.serverFarms'
+              type: 'Microsoft.Network/virtualNetworks/subnets/delegations'
+              properties: {
+                serviceName: 'Microsoft.Web/serverFarms'
+              }
+            }
+          ]
           serviceEndpoints: [
             {
               service: 'Microsoft.Storage'
