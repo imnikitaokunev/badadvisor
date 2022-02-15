@@ -13,6 +13,7 @@ module appService 'resources/appService.bicep' = {
   name: 'appService-deployment'
   params: {
     environment: environment
-    resourcePostfix: resourcePostfix
+    resourcePostfix: resourcePostfix,
+    storageAccountConnection: storageAccount.outputs.connectionString
   }
 }

@@ -4,10 +4,11 @@
 ])
 param environment string
 param resourcePostfix string
+param location string = resourceGroup().location
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   name: 'sabadadvisor${environment}${resourcePostfix}'
-  location: resourceGroup().location
+  location: location
   sku: {
     name: 'Standard_LRS'
   }
@@ -16,3 +17,5 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
     accessTier: 'Hot'
   }
 }
+
+output connectionString string = storageAccount.listKeys().keys[0].value
