@@ -1,6 +1,7 @@
 param environment string
 param resourcePostfix string
 param location string = resourceGroup().location
+@secure()
 param storageAccountConnection string
 
 resource appService 'Microsoft.Web/sites@2021-02-01' = {
