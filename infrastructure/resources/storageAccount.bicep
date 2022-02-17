@@ -2,12 +2,12 @@
   'dev'
   'prod'
 ])
-param environment string
+param env string
 param resourcePostfix string
 param location string = resourceGroup().location
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: 'sabadadvisor${environment}${resourcePostfix}'
+  name: 'sabadadvisor${env}${resourcePostfix}'
   location: location
   sku: {
     name: 'Standard_LRS'
@@ -18,4 +18,4 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   }
 }
 
-output connectionString string = storageAccount.listKeys().keys[0].value
+output connectionString string = 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'

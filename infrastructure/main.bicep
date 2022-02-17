@@ -4,7 +4,7 @@ param resourcePostfix string
 module storageAccount 'resources/storageAccount.bicep' = {
   name: 'storageAccount-deployment'
   params: {
-    environment: environment
+    env: environment
     resourcePostfix: resourcePostfix
   }
 }
