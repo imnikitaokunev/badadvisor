@@ -17,3 +17,12 @@ module appService 'resources/appService.bicep' = {
     storageAccountConnection: storageAccount.outputs.connectionString
   }
 }
+
+module virtualNetwork 'resources/vnet.bicep' = {
+  name: 'virtualNetwork-deployment'
+  params: {
+    environment: environment
+    resourcePostfix: resourcePostfix
+  }
+}
+
