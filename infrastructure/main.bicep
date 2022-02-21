@@ -6,6 +6,7 @@ module storageAccount 'resources/storageAccount.bicep' = {
   params: {
     env: environment
     resourcePostfix: resourcePostfix
+    subnetId: virtualNetwork.outputs.subnetId
   }
 }
 
