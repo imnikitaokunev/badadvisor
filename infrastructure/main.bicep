@@ -16,6 +16,8 @@ module appService 'resources/appService.bicep' = {
     environment: environment
     resourcePostfix: resourcePostfix
     storageAccountConnection: storageAccount.outputs.connectionString
+    vnetName: virtualNetwork.outputs.vnetName
+    subnetId: virtualNetwork.outputs.subnetId
   }
 }
 

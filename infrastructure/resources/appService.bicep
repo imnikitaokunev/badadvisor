@@ -3,6 +3,8 @@ param resourcePostfix string
 param location string = resourceGroup().location
 @secure()
 param storageAccountConnection string
+param vnetName string
+param subnetId string
 
 resource appService 'Microsoft.Web/sites@2021-02-01' = {
   name: 'appservice-badadvisor-${environment}-${resourcePostfix}'
@@ -13,6 +15,8 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     siteConfig: {
       linuxFxVersion: 'DOTNETCORE|5.0'
       alwaysOn: true
+      vnetName: vnetName
+      vnetRouteAllEnabled: true
       appSettings: [
         {
           name: 'StorageConnectionString'
@@ -20,6 +24,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
         }
       ]
     }
+    virtualNetworkSubnetId: subnetId
   }
 }
 
